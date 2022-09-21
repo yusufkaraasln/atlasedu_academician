@@ -1,0 +1,93 @@
+.container{
+
+    height: 100vh;
+    background-color: #18191a;
+    overflow-y: scroll;
+
+}
+
+.search{
+    width: 100%;
+    background-color: red;
+    padding: 2.2rem 0;
+    background: #18191a;
+    position: sticky;
+    top: 0;
+}
+
+.searchContainer{
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    padding: 0 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    height: 2.5rem;
+    background-color: #3a3b3c;
+    border-radius: 20px;
+}
+
+.inputContainer{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.searchInput{
+    margin-right: auto;
+    margin-left: 1rem;
+    border: none;
+    background: none;
+    color: #b0b3b8;
+    width: 100%;
+    outline: none;
+}
+
+.academician{
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    background: #242526;
+    border-radius: 20px;
+    padding: 1rem;
+    border: 1px solid #393a3b;
+} 
+
+
+.acdImg{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+.acdInfo{
+    margin-left: 1rem;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #b0b3b8;
+}
+.acdName{
+    font-size: 1rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+.acdTitle{
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #b0b3b8;
+    margin-bottom: 0.5rem;
+}
+.acdDepartment{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #b0b3b89f;
+    margin-bottom: 0.5rem;
+}

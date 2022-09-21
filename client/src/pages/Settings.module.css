@@ -1,0 +1,58 @@
+ .settings{
+
+    height: 100vh;
+    background-color: #18191a;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+
+
+ }
+
+ .settingsContainer{
+    padding: 3rem 2rem;
+
+ }
+ .settingsItem{
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+ }
+
+    .settingSpan{
+        color: #fff;
+        font-size: 1.2rem;
+    }
+
+    .switch{
+        width: 1.5rem;
+        height: 1.5rem;
+        padding: 0 0.5rem;
+        color: #fff;
+    }
+
+    .langContainer{
+        display: flex;
+
+    }
+    
+    
+
+    .lang{
+       background-color: none;
+        font-size: 1.2rem;
+        background: none;
+        border: none;
+        outline: none;
+        color: #fff;
+        padding: 0;
+        padding: 0 .5rem ;
+        
+    }
+    
+     
+
