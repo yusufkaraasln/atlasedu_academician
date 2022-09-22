@@ -1,0 +1,12 @@
+{
+  "en": {
+    "darkMode": "Dark Mode",
+    "lang": "Language",
+    "placeholder": "Search in Academics..."
+  },
+  "tr": {
+    "darkMode": "Karanlık Mod",
+    "lang": "Dil",
+    "placeholder": "Akademisyenlerde Ara..."
+  }
+}

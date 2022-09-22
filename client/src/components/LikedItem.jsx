@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
-function LikedItem() {
+function LikedItem({like}) {
 
 
     const LikedListItem = styled.div`
@@ -93,11 +93,11 @@ function LikedItem() {
 
   return (
     <LikedListItem>
-            <DetailsImg src="https://yt3.ggpht.com/yti/AJo0G0ndf-o7Q03FoWBOo8UnNLZzVeuHGsRDjWKv0IQqjQ=s108-c-k-c0x00ffffff-no-rj" />
+            <DetailsImg src={like.image} />
             <DetailsContainer>
-              <DetailsTitle>Dr. Öğr. Üyesi Recep DURANAY </DetailsTitle>
+              <DetailsTitle>{like.name}</DetailsTitle>
               <DetailsDesc>
-              Bilgisayar Mühendisliği Bölüm Başkanı
+                {like.desc}
 
               </DetailsDesc>
             </DetailsContainer>
@@ -106,7 +106,7 @@ function LikedItem() {
                 <FontAwesomeIcon icon={faHeart} color="#f91880" fontSize="10px" />
 
                 </IconContainer>
-                <DetailsIconNumber>500</DetailsIconNumber>
+                <DetailsIconNumber>{like.likes.length}</DetailsIconNumber>
 
               </DetailsIcon>
           </LikedListItem>

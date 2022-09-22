@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BottomBar from "../components/BottomBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,63 +7,85 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Search.module.css";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 function Search() {
   const [search, setSearch] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  const [results, setResults] = React.useState([]);
+  const settings = useSelector((state) => state.settings);
 
   const handleChange = (e) => {
-    setSearch(e.target.value)
-    
+    setSearch(e.target.value);
   };
   console.log(search);
+
+  useEffect(() => {
+    const searchAcdm = async () => {
+      const res = await axios.get(`/search/?query=${search}`);
+      setResults(res.data);
+    };
+
+    if (search.length > 2) {
+      searchAcdm();
+    }
+  }, [search]);
+  console.log(results);
 
   return (
     <div className={styles.container}>
       <div className={styles.search}>
-      <div className={styles.searchContainer}>
-        <div className={styles.inputContainer}>
+        <div className={styles.searchContainer}>
+          <div className={styles.inputContainer}>
+            {search === "" && (
+              <FontAwesomeIcon color="#b0b3b8" icon={faSearch} />
+            )}
 
-                {
-         search === "" &&  <FontAwesomeIcon color="#b0b3b8" icon={faSearch} />
-
-                }
-
-          <input
-            onChange={(e) => handleChange(e)}
-            placeholder="Akademisyenlerde Ara..."
-            className={styles.searchInput}
-            type="text"
-            style={search !== "" ? {marginLeft: 0}: null }
-            value={search}
-             
-          />
-        </div>
-      {
-        (search !=="") &&   <FontAwesomeIcon
-        color="#b0b3b8"
-        style={{
-          cursor: "pointer",
-        }}
-        onClick={()=>setSearch("")}
-        icon={faXmark}
-      />
-      }
-      </div>
-      </div>
-
-      <div className={styles.academician}>
-        <img src="https://yt3.ggpht.com/yti/AJo0G0ndf-o7Q03FoWBOo8UnNLZzVeuHGsRDjWKv0IQqjQ=s108-c-k-c0x00ffffff-no-rj" className={styles.acdImg} alt="" />
-        <div className={styles.acdInfo}>
-            <h3 className={styles.acdName}>Dr. Öğr. Üyesi Recep DURANAY</h3>
-            <p className={styles.acdTitle}>Bilgisayar Mühendisliği Bölüm Başkanı.</p>
-            <p className={styles.acdDepartment}>Bilgisayar Mühendisliği Öğretim Üyesi</p>
+            <input
+              onChange={(e) => handleChange(e)}
+              placeholder={settings.language.placeholder}
+              className={styles.searchInput}
+              type="text"
+              style={search !== "" ? { marginLeft: 0 } : null}
+              value={search}
+            />
+          </div>
+          {search !== "" && (
+            <FontAwesomeIcon
+              color="#b0b3b8"
+              style={{
+                cursor: "pointer",
+              }}
+              onClick={() => setSearch("")}
+              icon={faXmark}
+            />
+          )}
         </div>
       </div>
-       
-    
 
-        <BottomBar />
+      {search.length > 2 &&
+        results.length > 0 &&
+        results.map((result,key) => (
+          <div key={key} className={styles.academician}>
+            <img
+              src={result.image}
+              className={styles.acdImg}
+              alt=""
+            />
+            <div className={styles.acdInfo}>
+              <h3 className={styles.acdName}>{result.name}</h3>
+              <p className={styles.acdTitle}>
+                {result.info}
+              </p>
+              <p className={styles.acdDepartment}>
+                {result.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+
+      <BottomBar />
     </div>
   );
 }

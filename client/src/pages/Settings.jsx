@@ -8,15 +8,34 @@ import {
   faUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Settings.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import { setLanguage } from "../redux/settingsReducer";
+import lang from "../utils/language.json";
+
 function Settings() {
   const [dark, setDark] = React.useState(false);
-  const [language, setLanguage] = React.useState("TR");
+  
+  const [language, setLang] = React.useState("TR");
+  const dispatch = useDispatch();
+  const settings = useSelector((state) => state.settings);
+  const tr = lang.tr;
+  const en = lang.en;
+  const handleClick = (type) => {
+    setLang(type);
+    if (type === "TR") {
+      dispatch(setLanguage(tr));
+    } else {
+      dispatch(setLanguage(en));
+    }
+  };
 
   return (
     <div className={styles.settings}>
       <div className={styles.settingsContainer}>
         <div className={styles.settingsItem}>
-          <span className={styles.settingSpan}>Karanlık Mod</span>
+          <span className={styles.settingSpan}>
+            {settings.language.darkMode}
+          </span>
           <div className={styles.switchContainer}>
             {dark ? (
               <FontAwesomeIcon
@@ -34,16 +53,23 @@ function Settings() {
           </div>
         </div>
         <div className={styles.settingsItem}>
-          <span className={styles.settingSpan}>Dil</span>
+          <span className={styles.settingSpan}>{settings.language.lang}</span>
           <div className={styles.switchContainer}>
             <ul className={styles.langContainer}>
               <li>
                 <button
-                  onClick={() => setLanguage("TR")}
-                  style = {language === "TR" ? {color: "#fff"} : {
-                    color: "#4e4e4e"
-                  }}
-                className={styles.lang}>TR</button>
+                  onClick={() => handleClick("TR")}
+                  style={
+                    language === "TR"
+                      ? { color: "#fff" }
+                      : {
+                          color: "#4e4e4e",
+                        }
+                  }
+                  className={styles.lang}
+                >
+                  TR
+                </button>
               </li>
               <li>
                 <span
@@ -57,10 +83,10 @@ function Settings() {
               </li>
               <li>
                 <button
-                  style={ 
-                    language === "EN" ? {color: "#fff"} : {color : "#4e4e4e"}
+                  style={
+                    language === "EN" ? { color: "#fff" } : { color: "#4e4e4e" }
                   }
-                  onClick={() => setLanguage("EN")}
+                  onClick={() => handleClick("EN")}
                   className={styles.lang}
                 >
                   EN

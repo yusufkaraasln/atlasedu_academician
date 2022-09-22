@@ -2,7 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
-function CommentItem() {
+function CommentItem({ comment }) {
   const CommentListItem = styled.div`
     height: 30%;
     width: 100%;
@@ -112,18 +112,18 @@ animation: ${icon} 1s ease-in-out infinite;
 
   return (
     <CommentListItem>
-      <DetailsImg src="https://yt3.ggpht.com/yti/AJo0G0ndf-o7Q03FoWBOo8UnNLZzVeuHGsRDjWKv0IQqjQ=s108-c-k-c0x00ffffff-no-rj" />
+      <DetailsImg src={comment.image} />
       <DetailsContainer>
-        <DetailsTitle>Dr. Öğr. Üyesi Recep DURANAYasdfasdfasdf</DetailsTitle>
+        <DetailsTitle>{comment.name}</DetailsTitle>
         <DetailsDesc>
-          Bilgisayar Mühendisliği Bölüm Başkanıasdfasdfasdf
+          {comment.desc}
         </DetailsDesc>
       </DetailsContainer>
       <DetailsIcon>
         <IconContainer>
           <FontAwesomeIcon icon={faComment} color="#00ba7c" fontSize="10px" />
         </IconContainer>
-        <DetailsIconNumber>500</DetailsIconNumber>
+        <DetailsIconNumber>{ comment.comments.length}</DetailsIconNumber>
       </DetailsIcon>
     </CommentListItem>
   );
