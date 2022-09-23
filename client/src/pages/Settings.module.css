@@ -1,6 +1,7 @@
  .settings{
 
     height: 100vh;
+    transition: all 0.5s ease;
     background-color: #18191a;
     overflow-y: scroll;
     display: flex;
@@ -32,7 +33,6 @@
         width: 1.5rem;
         height: 1.5rem;
         padding: 0 0.5rem;
-        color: #fff;
     }
 
     .langContainer{

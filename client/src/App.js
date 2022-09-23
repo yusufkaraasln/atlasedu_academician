@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import Settings from "./pages/Settings";
 import Single from "./pages/Single";
+import TopTen from "./pages/TopTen";
 
 function App() {
   // const [users,setUsers] = useState([]);
@@ -26,7 +27,6 @@ function App() {
 
   // }, []);
   const location = window.location.pathname;
-  console.log(location);
   return (
     <Router>
       <Routes>
@@ -34,6 +34,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/sir/:id" element={<Single/>}></Route>
+        <Route path="/top/:type" element={<TopTen/>}></Route>
         <Route path="/*" element={<ErrorPage/>} ></Route>
       </Routes>
     </Router>

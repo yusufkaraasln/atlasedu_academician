@@ -1,20 +1,21 @@
-import {createSlice} from '@reduxjs/toolkit';
-import lang from '../utils/language.json';
-
+import { createSlice } from "@reduxjs/toolkit";
+import lang from "../utils/language.json";
 
 const initialState = {
-    language: lang.en,
-    darkMode: true,
+  language: lang.en,
+  darkMode: false,
 };
 export const languageSlice = createSlice({
-    name: 'settings',
-    initialState,
-    reducers: {
-        setLanguage: (state, action) => {
-
-            state.language = action.payload;
-        }
+  name: "settings",
+  initialState,
+  reducers: {
+    setLanguage: (state, action) => {
+      state.language = action.payload;
     },
+    setDarkMode: (state) => {
+      state.darkMode = !state.darkMode;
+    },
+  },
 });
-export const {setLanguage} = languageSlice.actions;
+export const { setLanguage,setDarkMode } = languageSlice.actions;
 export default languageSlice.reducer;

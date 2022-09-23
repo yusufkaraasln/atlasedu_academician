@@ -1,32 +1,19 @@
 import React, { useEffect } from "react";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import BottomBar from "../components/BottomBar";
-import logo from "../assets/atlas_universitesi_logo.webp";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+
 import LikedItem from "../components/LikedItem";
 import CommentItem from "../components/CommentItem";
 import LSkeletonItem from "../components/LSkeletonItem";
 import CSkeletonItem from "../components/CSkeletonItem";
-
+import { useSelector } from "react-redux";
 function Home() {
+
+  const darkMode = useSelector((state) => state.settings.darkMode);
   const Container = styled.div`
     height: 100vh;
-    background-color: #18191a;
+    background:  ${darkMode ? "#18191a" : "linear-gradient(to bottom, #ffdfdf, #dae8ff)"};
     overflow-y: scroll;
-  `;
-
-  const Icon = styled.div`
-    width: 10%;
-    padding: 10px;
-    gap: 10px;
-    border-radius: 0.8rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #b0b3b8;
-
-    background-color: #3a3b3c;
   `;
 
   const Wrapper = styled.div`
@@ -38,14 +25,12 @@ function Home() {
     gap: 1rem;
   `;
 
- 
-
   const LikedList = styled.div`
     height: 40vh;
     min-height: 259px;
     width: 95%;
     margin-left: 0 auto;
-    background-color: #242526;
+    background-color: ${darkMode ? "#242526" : "#fff"};
     border-radius: 0 20px 20px 0;
     display: flex;
     flex-direction: column;
@@ -53,19 +38,22 @@ function Home() {
     gap: 1.2rem;
     padding: 1.8rem;
     padding-left: 0;
-    border: 1px solid #f91880;
+    border: 1px solid ${darkMode ? "#f91880" : "none"};
+
     border-left: none;
   `;
 
   const CommentList = styled.div`
     height: 40vh;
-    border: 1px solid #00ba7c;
+    border: 1px solid ${darkMode ? "#00ba7c" : "none"};
+
     border-right: none;
     min-height: 259px;
     width: 95%;
     margin-left: auto;
     border-radius: 20px 0 0 20px;
-    background-color: #242526;
+    background-color: ${darkMode ? "#242526" : "#fff"};
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,46 +62,43 @@ function Home() {
     padding-right: 0;
   `;
 
+  const LikedListSkeleton = styled.div`
+    height: 40vh;
+    min-height: 259px;
+    width: 95%;
+    margin-left: 0 auto;
+    background-color: ${darkMode ? "#242526" : "#fff"};
+    border-radius: 0 20px 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.8rem;
+    padding-left: 0;
+    border-left: none;
+  `;
 
-const LikedListSkeleton = styled.div`
-height: 40vh;
-min-height: 259px;
-width: 95%;
-margin-left: 0 auto;
-background-color: #242526;
-border-radius: 0 20px 20px 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 1.2rem;
-padding: 1.8rem;
-padding-left: 0;
-border-left: none;
-`;
+  const CommentListSkeleton = styled.div`
+    height: 40vh;
+    border-right: none;
+    min-height: 259px;
+    width: 95%;
+    margin-left: auto;
+    border-radius: 20px 0 0 20px;
+    background-color: ${darkMode ? "#242526" : "#fff"};
 
-const CommentListSkeleton = styled.div`
-height: 40vh;
-border-right: none;
-min-height: 259px;
-width: 95%;
-margin-left: auto;
-border-radius: 20px 0 0 20px;
-background-color: #242526;
-display: flex;
-flex-direction: column;
-justify-content: center;
-gap: 1.2rem;
-padding: 1.8rem;
-padding-right: 0;
-`;
-
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+    padding: 1.8rem;
+    padding-right: 0;
+  `;
 
   const [likeds, setLikeds] = React.useState([]);
   const [comments, setComments] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
 
-  
   useEffect(() => {
     const getLiked = async () => {
       setLoading(true);
@@ -124,13 +109,10 @@ padding-right: 0;
         setLoading(false);
       } catch (error) {
         console.log(error);
-        setLoading(false);
       }
     };
     getLiked();
   }, []);
-
-
 
   useEffect(() => {
     const getCommented = async () => {
@@ -142,7 +124,6 @@ padding-right: 0;
         setLoading(false);
       } catch (error) {
         console.log(error);
-        setLoading(false);
       }
     };
     getCommented();
@@ -153,37 +134,31 @@ padding-right: 0;
     <Container>
       <Wrapper>
         {loading ? (
-            <LikedListSkeleton>
-            <LSkeletonItem/>
-            <LSkeletonItem/>
-            <LSkeletonItem/>
+          <LikedListSkeleton>
+            <LSkeletonItem />
+            <LSkeletonItem />
+            <LSkeletonItem />
           </LikedListSkeleton>
         ) : (
-          
-            <LikedList>
-              {likeds.map((liked, i) => (
-                <LikedItem key={i} like={liked} />
-              ))}
-            </LikedList>
-            
-        
+          <LikedList>
+            {likeds.map((liked, i) => (
+              <LikedItem key={i} like={liked} />
+            ))}
+          </LikedList>
         )}
-       {
-          loading ? (
-            <CommentListSkeleton>
-            <CSkeletonItem/>
-            <CSkeletonItem/>
-            <CSkeletonItem/>
+        {loading ? (
+          <CommentListSkeleton>
+            <CSkeletonItem />
+            <CSkeletonItem />
+            <CSkeletonItem />
           </CommentListSkeleton>
-          ) : (
-            <CommentList>
-              {comments.map((comment, i) => (
-                <CommentItem key={i} comment={comment} />
-              ))}
-            </CommentList>
-          
-          )
-       }
+        ) : (
+          <CommentList>
+            {comments.map((comment, i) => (
+              <CommentItem key={i} comment={comment} />
+            ))}
+          </CommentList>
+        )}
       </Wrapper>
 
       <BottomBar />

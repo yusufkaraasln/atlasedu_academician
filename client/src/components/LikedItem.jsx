@@ -4,16 +4,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 function LikedItem({like}) {
-
+  const darkMode = useSelector((state) => state.settings.darkMode);
 
     const LikedListItem = styled.div`
     height: 30%;
     width: 100%;
-    background-color: #3a3b3c;
+    background-color:  ${darkMode ? "#3a3b3c" : "#fff"};
+
     display: flex;
     align-items: center;
     padding: 10px;
+    box-shadow: ${darkMode ? "none" : "0 0 5px #ffd9d9"};
     border-left: 0;
     border-radius: 0 20px 20px 0;
     position: relative;
@@ -38,7 +41,8 @@ function LikedItem({like}) {
   const DetailsTitle = styled.span`
     font-size: 0.8rem;
     font-weight: 500;
-    color: #fff;
+    color: ${darkMode ? "#fff" : "#4b4b4b"};
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -58,7 +62,8 @@ function LikedItem({like}) {
     right: 0;
     bottom: -10px;
     width: 20%;
-    background-color: #18191a;
+    background-color: ${darkMode ? "#18191a" : "#ffe4f1"};
+
     border-radius: 10px;
     display: flex;
     justify-content: space-evenly;
@@ -103,7 +108,9 @@ function LikedItem({like}) {
             </DetailsContainer>
               <DetailsIcon>
                 <IconContainer>
-                <FontAwesomeIcon icon={faHeart} color="#f91880" fontSize="10px" />
+                <FontAwesomeIcon icon={faHeart} color={
+                  darkMode ? "#f91880" : "#ff3d98"
+                }fontSize="10px" />
 
                 </IconContainer>
                 <DetailsIconNumber>{like.likes.length}</DetailsIconNumber>

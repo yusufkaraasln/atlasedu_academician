@@ -1,0 +1,125 @@
+.container{
+
+    background: #18191a;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top{
+    background: #242526;
+    padding:  1.5rem ;
+    border-radius: 0 0 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.acdName{
+    color: #fff;
+    font-size: 1rem;
+    margin-left: 1.5rem;
+}
+.main{
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 3.5rem;
+}
+.img{
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+}
+.status{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.statusItem{
+    color: #b0b3b8;
+    font-size: .9rem;
+}
+
+.details{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.footer{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+}
+.desc{
+    color: #cacaca;
+    font-size: 14px;
+    text-align: center;
+     
+
+}
+.info{
+    text-align: center;
+    color: #b0b3b8;
+    font-size: 12px;
+    
+}
+ 
+.center{
+    padding-top: 237px;
+    padding-right:  1rem;
+    padding-left:  1rem;
+    padding-bottom:  4rem;
+   height: 100%;
+   overflow-y: scroll;
+   display: flex;
+flex-direction: column;
+overflow: auto;
+}
+
+.bottom{
+    padding: 1rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #18191a;
+}
+.inputContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.input{
+    width: 100%;
+    padding: .5rem;
+    background: #3a3b3c;
+    border-radius: .5rem;
+    color: #fff;
+    outline: none;
+    border: none;
+}
+.icon{
+    color: #fff;
+    background: #3a3b3c;
+    border-radius: .5rem;
+    padding: .6rem;
+    font-size: 1rem;
+}
+
+.heart{
+    font-size: 1.5rem;
+}
+ 

@@ -1,12 +1,14 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+
 function LSkeletonItem() {
+  const darkMode = useSelector((state) => state.settings.darkMode);
   const LikedListItem = styled.div`
     height: 30%;
     width: 100%;
-    background-color: #3a3b3c;
+    background-color: ${darkMode ? "#3a3b3c" : "#fff"};
+
     display: flex;
     align-items: center;
     padding: 10px;
@@ -26,12 +28,16 @@ function LSkeletonItem() {
     margin-left: 1rem;
   `;
    const skeleton = keyframes`
-   0% {
-       opacity: 0.5;
-   }
-   100% {
-       opacity: 1;
-   }
+  0% {
+        opacity: ${darkMode ? "0.1" : "0.3"};
+    }
+    50% {
+
+        opacity: ${darkMode ? "0.25" : "0.6"};
+    }
+    100% {
+        opacity: ${darkMode ? "0.5" : "1"};
+    }
    
  `;
   const DetailsImg = styled.div`
@@ -40,7 +46,7 @@ function LSkeletonItem() {
     width: 2.5rem;
     object-fit: cover;
     background-color: #b0b3b863;
-    animation: ${skeleton} .5s alternate-reverse infinite;
+    animation: ${skeleton} .8s alternate-reverse infinite;
 
   `;
   const DetailsTitle = styled.div`
@@ -52,7 +58,7 @@ function LSkeletonItem() {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    animation: ${skeleton} .5s alternate-reverse infinite;
+    animation: ${skeleton} .8s alternate-reverse infinite;
   `;
   const DetailsDesc = styled.div`
     width: 90%;
@@ -60,15 +66,9 @@ function LSkeletonItem() {
     background-color: #b0b3b863;
     border-radius: 10px;
     color: #b0b3b8;
-    animation: ${skeleton} .5s alternate-reverse infinite;
+    animation: ${skeleton} .8s alternate-reverse infinite;
   `;
-  const DetailsInfo = styled.div`
-    width: 90%;
-    height: 0.3rem;
-    background-color: #b0b3b863;
-    border-radius: 10px;
-    color: #b0b3b8;
-  `;
+
  
 
   return (

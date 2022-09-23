@@ -2,13 +2,17 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
+import {useSelector} from 'react-redux'
 function CommentItem({ comment }) {
+  const darkMode = useSelector((state) => state.settings.darkMode);
+
   const CommentListItem = styled.div`
     height: 30%;
     width: 100%;
-    background-color: #3a3b3c;
+    background-color:  ${darkMode ? "#3a3b3c" : "#fff"};
     display: flex;
     align-items: center;
+    box-shadow: ${darkMode ? "none" : "0 0 5px #b4ffd9"};
     padding: 10px;
     border-radius: 20px 0 0 20px;
     position: relative;
@@ -33,7 +37,7 @@ function CommentItem({ comment }) {
   const DetailsTitle = styled.span`
     font-size: 0.8rem;
     font-weight: 500;
-    color: #fff;
+    color: ${darkMode ? "#fff" : "#4b4b4b"};
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -53,7 +57,7 @@ function CommentItem({ comment }) {
     right: 0;
     bottom: -10px;
     width: 20%;
-    background-color: #18191a;
+    background-color: ${darkMode ? "#18191a" : "#e4fff7"};
     border-radius: 10px;
     display: flex;
     justify-content: space-evenly;
@@ -62,7 +66,7 @@ overflow-x: hidden;
 
   `;
   const DetailsIconNumber = styled.span`
-    color: #00ba7c;
+    color: ${darkMode ? "#00ba7c" : "#22ffb5"};
     font-size: 0.8rem;
     line-height: 1.2rem;
   `;
@@ -121,7 +125,9 @@ animation: ${icon} 1s ease-in-out infinite;
       </DetailsContainer>
       <DetailsIcon>
         <IconContainer>
-          <FontAwesomeIcon icon={faComment} color="#00ba7c" fontSize="10px" />
+          <FontAwesomeIcon icon={faComment} color={
+            darkMode ? "#00ba7c" : "#31ffba"
+          } fontSize="10px" />
         </IconContainer>
         <DetailsIconNumber>{ comment.comments.length}</DetailsIconNumber>
       </DetailsIcon>

@@ -1,70 +1,86 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
 import BottomBar from "../components/BottomBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMoon,
-  faSun,
-  faUpRightFromSquare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Settings.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { setLanguage } from "../redux/settingsReducer";
+import { setLanguage, setDarkMode } from "../redux/settingsReducer";
 import lang from "../utils/language.json";
 
 function Settings() {
-  const [dark, setDark] = React.useState(false);
-  
-  const [language, setLang] = React.useState("TR");
+  const theme = useSelector((state) => state.settings.darkMode);
   const dispatch = useDispatch();
   const settings = useSelector((state) => state.settings);
   const tr = lang.tr;
   const en = lang.en;
   const handleClick = (type) => {
-    setLang(type);
     if (type === "TR") {
       dispatch(setLanguage(tr));
     } else {
       dispatch(setLanguage(en));
     }
   };
+  const handleTheme = () => {
+    dispatch(setDarkMode());
+  };
+  console.log(theme);
 
   return (
-    <div className={styles.settings}>
+    <div
+    className={styles.settings}
+    style={{
+      background: theme
+        ? "#18191a"
+        : "linear-gradient(to bottom, #ffdfdf, #dae8ff)",
+    }}
+    >
       <div className={styles.settingsContainer}>
         <div className={styles.settingsItem}>
-          <span className={styles.settingSpan}>
+          <span
+            style={{
+              color: theme ? "#fff" : "#000",
+            }}
+            className={styles.settingSpan}
+          >
             {settings.language.darkMode}
           </span>
           <div className={styles.switchContainer}>
-            {dark ? (
+            {theme ? (
               <FontAwesomeIcon
-                onClick={() => setDark(false)}
+                onClick={() => handleTheme(true)}
+                color={theme ? "#fff" : "#000"}
                 className={styles.switch}
+
                 icon={faSun}
               />
             ) : (
               <FontAwesomeIcon
                 icon={faMoon}
+                color={theme ? "#fff" : "#000"}
                 className={styles.switch}
-                onClick={() => setDark(true)}
+                onClick={() => handleTheme(false)}
               />
             )}
           </div>
         </div>
         <div className={styles.settingsItem}>
-          <span className={styles.settingSpan}>{settings.language.lang}</span>
+          <span
+            style={{
+              color: theme ? "#fff" : "#000",
+            }}
+            className={styles.settingSpan}
+          >
+            {settings.language.lang}
+          </span>
           <div className={styles.switchContainer}>
             <ul className={styles.langContainer}>
               <li>
                 <button
                   onClick={() => handleClick("TR")}
                   style={
-                    language === "TR"
-                      ? { color: "#fff" }
-                      : {
-                          color: "#4e4e4e",
-                        }
+                    settings.language === tr
+                    ? { color: theme ? "#fff" : "#4e4e4e" }
+                    : { color: theme ? "#4e4e4e" : "#fff" }
                   }
                   className={styles.lang}
                 >
@@ -84,7 +100,9 @@ function Settings() {
               <li>
                 <button
                   style={
-                    language === "EN" ? { color: "#fff" } : { color: "#4e4e4e" }
+                    settings.language === en
+                    ? { color: theme ? "#fff" : "#4e4e4e" }
+                    : { color: theme ? "#4e4e4e" : "#fff" }
                   }
                   onClick={() => handleClick("EN")}
                   className={styles.lang}
