@@ -15,6 +15,7 @@
     background: #242526;
     padding:  1.5rem ;
     border-radius: 0 0 2rem 2rem;
+    min-height: 240px ;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -89,6 +90,12 @@ flex-direction: column;
 overflow: auto;
 }
 
+.message {
+    margin: 1rem 0;
+    align-self: flex-start;
+    margin-bottom: 20px;
+    max-width: 70%;
+}
 .bottom{
     padding: 1rem;
     position: absolute;

@@ -92,3 +92,10 @@
     color: #b0b3b89f;
     margin-bottom: 0.5rem;
 }
+.loading{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}

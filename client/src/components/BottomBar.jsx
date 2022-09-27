@@ -38,7 +38,6 @@ function BottomBar() {
   `;
 
   const location = window.location.pathname;
-  console.log(location);
 
   return (
     <Container>

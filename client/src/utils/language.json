@@ -2,11 +2,25 @@
   "en": {
     "darkMode": "Dark Mode",
     "lang": "Language",
-    "placeholder": "Search in Academics..."
+    "placeholder": "Search in academics...",
+    "placeholder2": "Write your comment",
+    "all": "Show all list",
+    "top10likes": "The 10 Most Liked Academics",
+    "top10comments": "The 10 Most Commented Academics",
+    "like": "Like",
+    "comment": "Comment",
+    "warning": "Comment must be at least 7 characters long"
   },
   "tr": {
     "darkMode": "Karanlık Mod",
     "lang": "Dil",
-    "placeholder": "Akademisyenlerde Ara..."
+    "placeholder": "Akademisyenlerde ara...",
+    "placeholder2": "Yorumunuzu yazın",
+    "all": "Tüm listeyi gör",
+    "top10likes": "En Çok Beğenilen 10 Akademisyen",
+    "top10comments": "En Çok Yorum Yapılan 10 Akademisyen",
+    "like": "Beğeni",
+    "comment": "Yorum",
+    "warning": "Yorumunuz en az 7 karakter olmalıdır"
   }
 }

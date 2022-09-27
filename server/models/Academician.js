@@ -20,8 +20,14 @@ const AcademicianSchema = new mongoose.Schema({
     type: String,
   },
   likes: {
-    type: Array,
-    default: [],
+    type: [
+      {
+        anonId: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   comments: {
     type: [

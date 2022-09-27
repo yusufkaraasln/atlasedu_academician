@@ -1,4 +1,4 @@
-
+import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
@@ -6,6 +6,7 @@ import Search from "./pages/Search";
 import Settings from "./pages/Settings";
 import Single from "./pages/Single";
 import TopTen from "./pages/TopTen";
+import { v4 as uuidv4 } from "uuid";
 
 function App() {
   // const [users,setUsers] = useState([]);
@@ -26,17 +27,29 @@ function App() {
   //   getUsers("sbf")
 
   // }, []);
+
   const location = window.location.pathname;
+  const anonId = localStorage.getItem("anonId");
+  useEffect(() => {
+    if (!anonId) {
+      localStorage.setItem("anonId", uuidv4());
+    }
+  }, [anonId]);
+
+ 
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
         <Route path="/settings" element={<Settings />} />
-        <Route path="/sir/:id" element={<Single/>}></Route>
-        <Route path="/top/:type" element={<TopTen/>}></Route>
-        <Route path="/*" element={<ErrorPage/>} ></Route>
+        <Route path="/sir/:id" element={<Single />}></Route>
+        <Route path="/top/:type" element={<TopTen />}></Route>
+        <Route path="/*" element={<ErrorPage />}></Route>
       </Routes>
+
+     
     </Router>
   );
 }

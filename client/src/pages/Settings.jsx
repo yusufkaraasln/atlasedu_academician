@@ -13,26 +13,30 @@ function Settings() {
   const settings = useSelector((state) => state.settings);
   const tr = lang.tr;
   const en = lang.en;
+   
+
   const handleClick = (type) => {
     if (type === "TR") {
       dispatch(setLanguage(tr));
+      localStorage.setItem("language", JSON.stringify(tr));
     } else {
       dispatch(setLanguage(en));
+      localStorage.setItem("language", JSON.stringify(en));
     }
   };
   const handleTheme = () => {
     dispatch(setDarkMode());
+    localStorage.setItem("theme", !theme);
   };
-  console.log(theme);
-
+  
   return (
     <div
-    className={styles.settings}
-    style={{
-      background: theme
-        ? "#18191a"
-        : "linear-gradient(to bottom, #ffdfdf, #dae8ff)",
-    }}
+      className={styles.settings}
+      style={{
+        background: theme
+          ? "#18191a"
+          : "linear-gradient(to bottom, #ffdfdf, #dae8ff)",
+      }}
     >
       <div className={styles.settingsContainer}>
         <div className={styles.settingsItem}>
@@ -50,7 +54,6 @@ function Settings() {
                 onClick={() => handleTheme(true)}
                 color={theme ? "#fff" : "#000"}
                 className={styles.switch}
-
                 icon={faSun}
               />
             ) : (
@@ -78,9 +81,9 @@ function Settings() {
                 <button
                   onClick={() => handleClick("TR")}
                   style={
-                    settings.language === tr
-                    ? { color: theme ? "#fff" : "#4e4e4e" }
-                    : { color: theme ? "#4e4e4e" : "#fff" }
+                    (settings.language === tr || settings.language.lang === "Dil")
+                      ? { color: theme ? "#fff" : "#4e4e4e" }
+                      : { color: theme ? "#4e4e4e" : "#fff" }
                   }
                   className={styles.lang}
                 >
@@ -100,9 +103,9 @@ function Settings() {
               <li>
                 <button
                   style={
-                    settings.language === en
-                    ? { color: theme ? "#fff" : "#4e4e4e" }
-                    : { color: theme ? "#4e4e4e" : "#fff" }
+                    (settings.language === en || settings.language.lang === "Language")
+                      ? { color: theme ? "#fff" : "#4e4e4e" }
+                      : { color: theme ? "#4e4e4e" : "#fff" }
                   }
                   onClick={() => handleClick("EN")}
                   className={styles.lang}

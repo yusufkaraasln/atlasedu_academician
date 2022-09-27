@@ -7,12 +7,15 @@ import CommentItem from "../components/CommentItem";
 import LSkeletonItem from "../components/LSkeletonItem";
 import CSkeletonItem from "../components/CSkeletonItem";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 function Home() {
-
   const darkMode = useSelector((state) => state.settings.darkMode);
+  const lang = useSelector((state) => state.settings.language);
   const Container = styled.div`
     height: 100vh;
-    background:  ${darkMode ? "#18191a" : "linear-gradient(to bottom, #ffdfdf, #dae8ff)"};
+    background: ${darkMode
+      ? "#18191a"
+      : "linear-gradient(to bottom, #ffdfdf, #dae8ff)"};
     overflow-y: scroll;
   `;
 
@@ -39,7 +42,7 @@ function Home() {
     padding: 1.8rem;
     padding-left: 0;
     border: 1px solid ${darkMode ? "#f91880" : "none"};
-
+    position: relative;
     border-left: none;
   `;
 
@@ -60,6 +63,7 @@ function Home() {
     gap: 1.2rem;
     padding: 1.8rem;
     padding-right: 0;
+    position: relative;
   `;
 
   const LikedListSkeleton = styled.div`
@@ -95,6 +99,25 @@ function Home() {
     padding-right: 0;
   `;
 
+  const ViewAll = styled.div`
+    position: absolute;
+    bottom: 0;
+    background-color: ${darkMode ? "#f91880" : "#f91880"};
+    border-top-right-radius: 20px;
+  `;
+  const ViewAllC = styled.div`
+    position: absolute;
+    background-color: ${darkMode ? "#00ba7c" : "#22ffb5"};
+    border-bottom-left-radius: 20px;
+    right: 0;
+    top: 0;
+  `;
+  const Text = styled.span`
+    color: ${darkMode ? "#fff" : "#fff"};
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  `;
+
   const [likeds, setLikeds] = React.useState([]);
   const [comments, setComments] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -128,7 +151,7 @@ function Home() {
     };
     getCommented();
   }, []);
-  console.log(likeds);
+ 
 
   return (
     <Container>
@@ -142,8 +165,19 @@ function Home() {
         ) : (
           <LikedList>
             {likeds.map((liked, i) => (
-              <LikedItem key={i} like={liked} />
+              <div key={i} className="">
+                  <Link  to={`/sir/${liked._id}`}>
+
+                <LikedItem  like={liked} />
+              </Link>
+                </div>
             ))}
+
+            <Link to="/top/mlikes">
+              <ViewAll>
+                <Text>{lang.all}</Text>
+              </ViewAll>
+            </Link>
           </LikedList>
         )}
         {loading ? (
@@ -155,8 +189,18 @@ function Home() {
         ) : (
           <CommentList>
             {comments.map((comment, i) => (
-              <CommentItem key={i} comment={comment} />
+              <div key={i} className="">
+                  <Link  to={`/sir/${comment._id}`}>
+                <CommentItem  comment={comment} />
+                  </Link>
+              </div>
             ))}
+
+            <Link to="/top/mcomments">
+              <ViewAllC>
+                <Text>{lang.all}</Text>
+              </ViewAllC>
+            </Link>
           </CommentList>
         )}
       </Wrapper>

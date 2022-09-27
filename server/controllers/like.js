@@ -4,7 +4,9 @@ const like = async (req, res) => {
   try {
     const like = await Academician.findByIdAndUpdate(req.params.id, {
       $push: {
-        likes : req.body.anonId,
+        likes : {
+            anonId: req.body.anonId,
+        },
       },
 
       new: true,
@@ -18,7 +20,9 @@ const unlike = async (req, res) => {
   try {
     const unlike = await Academician.findByIdAndUpdate(req.params.id, {
         $pull: {
-            likes : req.body.anonId,
+            likes : {
+                anonId: req.body.anonId,
+            },
           },
       new: true,
     });

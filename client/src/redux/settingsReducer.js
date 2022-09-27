@@ -2,9 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import lang from "../utils/language.json";
 
 const initialState = {
-  language: lang.en,
-  darkMode: false,
+  language: JSON.parse(localStorage.getItem("language")) || lang.tr,
+  darkMode: JSON.parse(localStorage.getItem("theme")) ||  false,
 };
+ 
 export const languageSlice = createSlice({
   name: "settings",
   initialState,
