@@ -7,7 +7,7 @@ import Settings from "./pages/Settings";
 import Single from "./pages/Single";
 import TopTen from "./pages/TopTen";
 import { v4 as uuidv4 } from "uuid";
-
+import "./styles/ScreenError.css"
 function App() {
   // const [users,setUsers] = useState([]);
 
@@ -36,10 +36,14 @@ function App() {
     }
   }, [anonId]);
 
- 
 
   return (
     <Router>
+ 
+
+
+      <div className="mobileview">
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
@@ -49,6 +53,22 @@ function App() {
         <Route path="/*" element={<ErrorPage />}></Route>
       </Routes>
 
+      </div>
+
+      <div className="mobileWarning">
+        <h1 className="headerWarning">Üzgünüz </h1>
+        <p className="contentWarning">
+          Şuanda geliştirme aşamasında olduğundan Iphone 5 veya denk cihazlardan
+          küçük çözünürlükteki kullanım ve laptop & masaüstü gibi büyük
+          cihazlardaki kullanım henüz desteklenmemektedir. Anlayışınız için teşekkür
+          ederiz ve desteklenen boyutlardaki mobil cihazlardan uygulamaya giriş yapmanızı tavsiye ederiz.
+        </p>
+      </div>
+
+
+
+
+       
      
     </Router>
   );
